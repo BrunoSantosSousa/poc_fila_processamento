@@ -37,6 +37,7 @@ async function iniciar() {
 
   stream.on("change", (next) => {
     console.log(next);
+    // update -> falha: 1
   });
 
   console.log("Servidor de processamento inicializado");

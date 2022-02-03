@@ -5,7 +5,8 @@ tasks:
     before: |
       mkdir -p /workspace/data
       mkdir -p /var/log/mongodb
-      mongod -f ./mongodb.conf --replSet rs0 --dbpath /workspace/data --fork --logpath ./mongod.log
+      mkdir -p ./logs
+      mongod -f ./mongodb.conf --replSet rs0 --dbpath /workspace/data --fork --logpath ./logs/mongod.log
       mongo --eval 'rs.initiate()'
   - name: Instalar pacotes fila
     init: cd ./fila-processamento && npm install
