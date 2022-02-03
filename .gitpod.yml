@@ -2,7 +2,12 @@ image:
   file: .Dockerfile
 tasks:
   - name: Iniciar Mongo
-    before: mkdir -p /workspace/data && mongod -f ./mongodb.conf --replSet rs0 --dbpath /workspace/data
+    before: |
+      mkdir -p /workspace/data
+      mkdir -p /var/log/mongodb
+      mongod -f ./mongodb.conf --replSet rs0 --dbpath /workspace/data --eval 'rs.initiate()' --fork --logpath /var/log/mongodb/mongod.log
+  - name: Instalar pacotes fila
+    init: cd ./fila-processamento && npm install
   - name: Iniciar Fila
     command: cd ./fila-processamento && npm run serve
     openMode: split-right
