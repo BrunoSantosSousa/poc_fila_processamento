@@ -1,2 +1,5 @@
 image:
   file: .Dockerfile
+tasks:
+  - name: Iniciar Mongo
+    before: mkdir -p /workspace/data && mongod --dbpath /workspace/data
