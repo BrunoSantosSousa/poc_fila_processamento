@@ -2,4 +2,10 @@ image:
   file: .Dockerfile
 tasks:
   - name: Iniciar Mongo
-    before: mkdir -p /workspace/data && mongod --dbpath /workspace/data
+    before: mkdir -p /workspace/data && mongod -f ./mongodb.conf --replSet rs0 --dbpath /workspace/data
+  - name: Iniciar Fila
+    command: cd ./fila-processamento && npm run serve
+    openMode: split-right
+ports:
+  - port: 27017
+    visibility: public

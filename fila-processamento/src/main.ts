@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import { Writable } from "stream";
 
 const CONNEXAO_URI =
-  "mongodb://usrsins:JkmahsiqUaxZ@mdbd104:27017,mdbd105:27017,mdbd106:27017/sins?authSource=admin&replicaSet=MongoDBDev4";
+  "mongodb://127.0.0.1:27017";
 
 enum Collections {
   FILA_PROCESSAMENTO_EMAIL = "teste",
