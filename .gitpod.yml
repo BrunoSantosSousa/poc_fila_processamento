@@ -5,12 +5,12 @@ tasks:
     before: |
       mkdir -p /workspace/data
       mkdir -p /var/log/mongodb
-      mongod -f ./mongodb.conf --replSet rs0 --dbpath /workspace/data --eval 'rs.initiate()' --fork --logpath /var/log/mongodb/mongod.log
+      mongod -f ./mongodb.conf --replSet rs0 --dbpath /workspace/data --fork --logpath ./mongod.log
+      mongo --eval 'rs.initiate()'
   - name: Instalar pacotes fila
     init: cd ./fila-processamento && npm install
   - name: Iniciar Fila
     command: cd ./fila-processamento && npm run serve
-    openMode: split-right
 ports:
   - port: 27017
     visibility: public
